@@ -1,20 +1,17 @@
-import sys
+# list out of birthdays/people
 import random
+import sys
+cal = int(sys.argv[1]) # days in year
+num = int(sys.argv[2]) # number of people
 
-people = int(sys.argv[1])
-calendar = int(sys.argv[2])
-iterations = int(sys.argv[3])
-
-sames = 0
-for _ in range(iterations):
-    classroom = []
-    same_birthday = False
-    for i in range(people):
-        birthday = random.randint(0, calendar-1)
-        if birthday in classroom:
-            same_birthday = True
-            break
-        classroom.append(birthday)
-    if same_birthday: sames += 1
-print(birthday)
-print(sames/iterations)
+shared = False
+birthdays = list()
+for _ in range(num):
+    date = random.randint(0, cal-1)
+    birthdays.append(date)
+for i in range(num):
+    for j in range(i+1, num):
+            if birthdays[i] == birthdays[j]:
+                shared = True
+if shared: print('birthday twins!')
+else: print('no shared bdays')
